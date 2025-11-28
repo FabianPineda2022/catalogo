@@ -1,4 +1,4 @@
-/* Estilos CSS actualizados (Guardar como styles.css) */
+/* Estilos CSS Base (Guardar como styles.css) */
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -9,7 +9,7 @@ body {
     transition: margin-top 0.5s ease;
 }
 
-/* --- Estilos del Mensaje de Bienvenida (Precarga) --- */
+/* --- Estilos de Precarga --- */
 #welcome-message {
     position: fixed;
     top: 0;
@@ -32,7 +32,7 @@ body {
     visibility: hidden !important;
 }
 
-/* --- Estilos del Contenido Principal --- */
+/* --- Estilos del Contenido Principal (Desktop) --- */
 
 header {
     text-align: center;
@@ -50,7 +50,7 @@ h1 {
 }
 
 .catalogo {
-    max-width: 900px;
+    max-width: 1200px; /* Aumentamos el ancho máximo para la cuadrícula */
     margin: 20px auto;
     padding: 0 20px;
 }
@@ -62,80 +62,225 @@ h1 {
     font-size: 1.8em;
 }
 
-ul {
+#searchInput {
+    width: calc(100% - 40px);
+    padding: 12px 15px;
+    margin-bottom: 25px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    font-size: 1.1em;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#searchInput:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.5);
+    outline: none;
+}
+
+/* --- CAMBIOS CLAVE PARA CSS GRID --- */
+.catalogo ul {
     list-style-type: none;
     padding: 0;
+    
+    /* Habilita CSS Grid */
+    display: grid;
+    /* Define 3 columnas de igual tamaño */
+    grid-template-columns: repeat(3, 1fr); 
+    /* Espacio entre las filas y columnas */
+    gap: 20px; 
 }
 
 .game-item {
-    display: flex;
-    align-items: center;
+    /* Deshabilitamos Flexbox y el margen inferior para el Grid */
+    display: block; 
+    margin-bottom: 0; 
+    
+    /* El resto de estilos de tarjeta */
     background-color: white;
-    margin-bottom: 20px;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
+    height: auto; /* Permite que la altura se ajuste al contenido */
 }
 
-.game-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
+/* Rediseño de los elementos internos de la tarjeta para Grid */
 .game-image {
-    flex-shrink: 0;
-    width: 120px;
-    height: 120px;
-    margin-right: 20px;
-    border-radius: 5px;
+    width: 100%; /* La imagen ocupa el ancho completo de la columna */
+    height: 150px; /* Altura fija para uniformidad */
+    margin-right: 0;
+    margin-bottom: 15px; /* Margen inferior en lugar de lateral */
     object-fit: cover;
+    border-radius: 5px;
     border: 3px solid #3498db;
-    overflow: hidden; /* Asegura que cualquier parte de la imagen ampliada no se salga de su contenedor visual */
-    
-    /* --- NUEVO: Propiedades para el efecto de zoom --- */
-    transition: transform 0.3s ease-in-out; /* Suaviza la transición del zoom */
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
 }
 
 .game-image:hover {
-    transform: scale(1.1); /* Agranda la imagen al 110% de su tamaño original */
-    cursor: pointer; /* Cambia el cursor para indicar que es interactivo */
+    transform: scale(1.05); /* Zoom más sutil en el grid */
+    cursor: pointer;
 }
 
 .game-content {
-    flex-grow: 1;
+    /* Quita el flex-grow, ya que el diseño es vertical */
+    flex-grow: unset; 
 }
 
 .game-content a {
     text-decoration: none;
     color: #3498db;
     font-weight: bold;
-    font-size: 1.5em;
+    font-size: 1.2em; /* Reducción de tamaño para la cuadrícula */
     margin-bottom: 5px;
-    display: inline-block;
-}
-
-.game-content a:hover {
-    color: #2980b9;
+    display: block; /* Ocupa todo el ancho */
+    text-align: center;
 }
 
 .game-content p {
     margin: 5px 0 10px 0;
     color: #555;
     line-height: 1.4;
+    font-size: 0.9em;
+}
+
+.toggle-details-button {
+    /* Aseguramos que el botón ocupe el ancho completo de la tarjeta */
+    width: 100%;
+    box-sizing: border-box; /* Incluye padding y borde en el ancho */
+    text-align: center;
 }
 
 .game-link-button {
-    display: inline-block;
-    padding: 8px 15px;
-    background-color: #2ecc71;
-    color: white;
-    border-radius: 4px;
-    text-decoration: none;
-    font-size: 0.9em;
-    transition: background-color 0.3s;
+    /* Aseguramos que el botón de JUGAR ocupe el ancho completo */
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    margin-top: 10px;
 }
 
-.game-link-button:hover {
-    background-color: #27ae60;
+/* --- Animación de Revelación y Táctil (sin cambios significativos) --- */
+.scroll-reveal-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scroll-reveal-item.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.game-item-tapped {
+    background-color: #d1ecf1 !important;
+    box-shadow: 0 0 15px rgba(52, 152, 219, 0.5) !important;
+}
+
+/* --- Estilos de Detalles Desplegables (sin cambios significativos) --- */
+.game-details-hidden {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+    opacity: 0;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-left: 3px solid #7f8c8d;
+    padding-left: 10px;
+    color: #666;
+    font-size: 0.9em;
+}
+
+.game-details-hidden p {
+    margin: 3px 0;
+}
+
+.game-details-hidden.visible {
+    max-height: 150px;
+    opacity: 1;
+}
+
+/* --- NUEVO: Estilos del Selector de Idioma --- */
+#language-selector-container {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: white;
+    font-size: 0.9em;
+    z-index: 20;
+}
+
+#language-select {
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-left: 5px;
+    font-size: 1em;
+}
+
+/* Ajuste responsive para el selector */
+@media (max-width: 600px) {
+    #language-selector-container {
+        position: static; /* Vuelve estático */
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    header {
+        padding-top: 50px; /* Asegura espacio si se quita el position: absolute */
+        padding-bottom: 20px;
+    }
+}
+
+/* ========================================================== */
+/* OPTIMIZACIÓN RESPONSIVE (MEDIA QUERIES)          */
+/* ========================================================== */
+
+/* --- Tablet Horizontal / Pantallas Medianas (Máx. 1024px) --- */
+@media (max-width: 1024px) {
+    .catalogo ul {
+        /* Bajamos de 3 a 2 columnas para Tablets */
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 15px;
+    }
+    
+    .catalogo {
+        max-width: 900px;
+    }
+
+    .game-content a {
+        font-size: 1.3em;
+    }
+}
+
+
+/* --- Móviles Grandes / Tablet Vertical (Máx. 700px) --- */
+@media (max-width: 700px) {
+    .catalogo ul {
+        /* Volvemos a una sola columna para la mejor experiencia móvil */
+        grid-template-columns: 1fr;
+    }
+    
+    .game-item {
+        /* Ajustamos para la vista de una sola columna */
+        padding: 15px;
+    }
+    
+    .game-image {
+        width: 100%;
+        height: auto;
+        max-height: 200px;
+    }
+    
+    .game-content a {
+        font-size: 1.4em;
+    }
+
+    #searchInput {
+        width: 95%; 
+        padding: 10px;
+        font-size: 1em;
+        margin-left: 10px;
+    }
 }

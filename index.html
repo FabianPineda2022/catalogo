@@ -3,245 +3,363 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎮 Catálogo de Videojuegos 🕹️</title>
+    <title data-translate="pageTitle">🎮 Catálogo de Videojuegos 🕹️</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
     <div id="welcome-message">
-        <p>Cargando el Catálogo... ¡Prepárate para jugar!</p>
+        <p data-translate="loadingMessage">Cargando el Catálogo... ¡Prepárate para jugar!</p>
     </div>	
 
     <header>
-        <h1>🚀 Explorador de Juegos Indie 👾</h1>
+        <div id="language-selector-container">
+            <label for="language-select">Idioma:</label>
+            <select id="language-select">
+                <option value="es">Español</option>
+                <option value="en">English</option>
+                <option value="pt">Português</option>
+            </select>
+        </div>
+        <h1 data-translate="headerTitle">🚀 Explorador de Juegos Indie 👾</h1>
     </header>
 
     <div class="catalogo">
-        <h2>Catálogo 2025</h2>
+        <input type="text" id="searchInput" data-translate-placeholder="searchPlaceholder" placeholder="Buscar juego por título..." aria-label="Buscar juegos en el catálogo">
         
+        <h2 data-translate="catalogTitle">Catálogo 2025</h2>
+	        
         <ul>
-            <li class="game-item">
-                <img src="./img/caballero.png" alt="Miniatura de Última Vez Caballero" class="game-image">
-                <div class="game-content">
+            <li class="game-item scroll-reveal-item">
+		    <img src="./img/caballero.png" alt="Miniatura de Caballero" class="game-image">
+            	    <div class="game-content">
                     <a href="https://lunacy-7.itch.io/ultima-vez-caballero" target="_blank">
                         Dominic: Última Vez Caballero
                     </a>
-                    <p>Un desafiante juego de acción y plataformas con gráficos pixel-art nostálgicos. Enfrenta a tu destino en tu última misión.</p>
-                    <a href="https://lunacy-7.itch.io/ultima-vez-caballero" target="_blank" class="game-link-button">
+		    <div class="game-details-hidden">
+                        <p><span data-translate="platform">Plataforma</span>: PC (itch.io)</p>
+                        <p><span data-translate="genre">Género</span>: Plataformas</p>
+                        <p><span data-translate="developer">Desarrollador</span>: Grupo 1</p>
+                    </div>
+                    <button class="toggle-details-button">Ver más detalles</button>
+                    <p data-translate="game1Desc">Un desafiante juego de acción y plataformas con gráficos pixel-art nostálgicos. Enfrenta a tu destino en tu última misión.</p>
+                    <a href="https://lunacy-7.itch.io/ultima-vez-caballero" target="_blank" class="game-link-button" data-translate="playButton">
                         ¡Jugar Ahora!
                     </a>
                 </div>
             </li>
 
-            <li class="game-item">
+            <li class="game-item scroll-reveal-item">
                 <img src="./img/pepe.png" alt="Miniatura de Pizza E Pepe" class="game-image">
                 <div class="game-content">
                     <a href="https://grupouner2025.itch.io/pizza-e-pepe" target="_blank">
                         Pizza E Pepe
                     </a>
-                    <p>Una aventura culinaria donde deberás dominar el arte de la pizza y gestionar tu propia pizzería. ¡No dejes que se queme!</p>
-                    <a href="https://grupouner2025.itch.io/pizza-e-pepe" target="_blank" class="game-link-button">
+                    <div class="game-details-hidden">
+                        <p><span data-translate="platform">Plataforma</span>: PC (itch.io)</p>
+                        <p><span data-translate="genre">Género</span>: Acción, Plataformas</p>
+                        <p><span data-translate="developer">Desarrollador</span>: Grupo 2</p>
+                    </div>
+                    <button class="toggle-details-button">Ver más detalles</button>
+                    <p data-translate="game2Desc">Una aventura culinaria donde deberás dominar el arte de la pizza y gestionar tu propia pizzería. ¡No dejes que se queme!</p>
+                    <a href="https://grupouner2025.itch.io/pizza-e-pepe" target="_blank" class="game-link-button" data-translate="playButton">
                         ¡Jugar Ahora!
                     </a>
                 </div>
             </li>
 
-            <li class="game-item">
+            <li class="game-item scroll-reveal-item">
                 <img src="./img/homero.png" alt="Miniatura de Juego de gd.games" class="game-image">
                 <div class="game-content">
                     <a href="https://gd.games/games/214b061d-525e-41fd-8bdb-7f1fdb19f17d" target="_blank">
                         La odisea de Homero
                     </a>
-                    <p>Explora un mundo desconocido lleno de acertijos y criaturas extrañas. La curiosidad es tu mejor arma.</p>
-                    <a href="https://gd.games/games/214b061d-525e-41fd-8bdb-7f1fdb19f17d" target="_blank" class="game-link-button">
+	            <div class="game-details-hidden">
+                        <p><span data-translate="platform">Plataforma</span>: PC (itch.io)</p>
+                        <p><span data-translate="genre">Género</span>: Acción, Plataformas</p>
+                        <p><span data-translate="developer">Desarrollador</span>: Grupo 3</p>
+                    </div>
+                    <button class="toggle-details-button">Ver más detalles</button>
+                    <p data-translate="game3Desc">Explora un mundo desconocido lleno de acertijos y criaturas extrañas. La curiosidad es tu mejor arma.</p>
+                    <a href="https://gd.games/games/214b061d-525e-41fd-8bdb-7f1fdb19f17d" target="_blank" class="game-link-button" data-translate="playButton">
                         ¡Jugar Ahora!
                     </a>
                     
                 </div>
             </li>
 
-            <li class="game-item">
+            <li class="game-item scroll-reveal-item">
                 <img src="./img/little.png" alt="Miniatura de Little Onion Adventures" class="game-image">
                 <div class="game-content">
                     <a href="https://dreamteamdevs.itch.io/little-onion-adventures" target="_blank">
                         Little Onion Adventures
                     </a>
-                    <p>Sigue las épicas (y lacrimógenas) andanzas de una pequeña cebolla que busca su lugar en un mundo hostil y lleno de cocineros.</p>
-                    <a href="https://dreamteamdevs.itch.io/little-onion-adventures" target="_blank" class="game-link-button">
+		    <div class="game-details-hidden">
+                        <p><span data-translate="platform">Plataforma</span>: PC (itch.io)</p>
+                        <p><span data-translate="genre">Género</span>: Acción, Plataformas</p>
+                        <p><span data-translate="developer">Desarrollador</span>: Grupo 4</p>
+                    </div>
+                    <button class="toggle-details-button">Ver más detalles</button>
+                    <p data-translate="game4Desc">Sigue las épicas (y lacrimógenas) andanzas de una pequeña cebolla que busca su lugar en un mundo hostil y lleno de cocineros.</p>
+                    <a href="https://dreamteamdevs.itch.io/little-onion-adventures" target="_blank" class="game-link-button" data-translate="playButton">
                         ¡Jugar Ahora!
                     </a>
                 </div>
             </li>
-            <li class="game-item">
+            <li class="game-item scroll-reveal-item">
                 <img src="./img/gauchada.png" alt="Miniatura de Little Onion Adventures" class="game-image">
                 <div class="game-content">
                     <a href="https://grupo5-gauchada.itch.io/gauchadainvasin-en-argentina" target="_blank">
                         Las aventuras del Gaucho Rivero
                     </a>
-                    <p>Las aventuras del Gaucho Rivero.</p>
-                    <a href="https://grupo5-gauchada.itch.io/gauchadainvasin-en-argentina" target="_blank" class="game-link-button">
+		    <div class="game-details-hidden">
+                        <p><span data-translate="platform">Plataforma</span>: PC (itch.io)</p>
+                        <p><span data-translate="genre">Género</span>: Acción, Plataformas</p>
+                        <p><span data-translate="developer">Desarrollador</span>: Grupo 5</p>
+                    </div>
+                    <button class="toggle-details-button">Ver más detalles</button>
+                    <p data-translate="game5Desc">Las aventuras del Gaucho Rivero.</p>
+                    <a href="https://grupo5-gauchada.itch.io/gauchadainvasin-en-argentina" target="_blank" class="game-link-button" data-translate="playButton">
                         ¡Jugar Ahora!
                     </a>
                 </div>
             </li>
-            <li class="game-item">
+            <li class="game-item scroll-reveal-item">
                 <img src="./img/cachi.png" alt="Miniatura de Little Onion Adventures" class="game-image">
                 <div class="game-content">
                     <a href="https://manuelgarcia1.itch.io/cachibache-game" target="_blank">
                         Cachi bache
                     </a>
-                    <p>Cachi bache.</p>
-                    <a href="https://manuelgarcia1.itch.io/cachibache-game" target="_blank" class="game-link-button">
+	            <div class="game-details-hidden">
+                        <p><span data-translate="platform">Plataforma</span>: PC (itch.io)</p>
+                        <p><span data-translate="genre">Género</span>: Acción, Plataformas</p>
+                        <p><span data-translate="developer">Desarrollador</span>: Grupo 6</p>
+                    </div>
+                    <button class="toggle-details-button">Ver más detalles</button>
+                    <p data-translate="game6Desc">Acompaña a Juan Carlos, un empleado administrativo que debe abrirse paso entre baches, autos, vacas y caos urbano para llegar al hospital justo a tiempo para el nacimiento de su hijo.</p>
+                    <a href="https://manuelgarcia1.itch.io/cachibache-game" target="_blank" class="game-link-button" data-translate="playButton">
                         ¡Jugar Ahora!
                     </a>
                 </div>
             </li>
-            <li class="game-item">
+            <li class="game-item scroll-reveal-item">
                 <img src="./img/marina.png" alt="Miniatura de Little Onion Adventures" class="game-image">
                 <div class="game-content">
                     <a href="https://anabellaventavoli.itch.io/marina-y-los-misterios-del-oceano" target="_blank">
                         Biologa Marina 
                     </a>
-                    <p>Biologa Marina.</p>
-                    <a href="https://anabellaventavoli.itch.io/marina-y-los-misterios-del-oceano" target="_blank" class="game-link-button">
+		    <div class="game-details-hidden">
+                        <p><span data-translate="platform">Plataforma</span>: PC (itch.io)</p>
+                        <p><span data-translate="genre">Género</span>: Acción, Plataformas</p>
+                        <p><span data-translate="developer">Desarrollador</span>: Grupo 8</p>
+                    </div>
+                    <button class="toggle-details-button">Ver más detalles</button>
+                    <p data-translate="game8Desc">Biologa Marina.</p>
+                    <a href="https://anabellaventavoli.itch.io/marina-y-los-misterios-del-oceano" target="_blank" class="game-link-button" data-translate="playButton">
                         ¡Jugar Ahora!
                     </a>
                 </div>
             </li>
-            <li class="game-item">
+            <li class="game-item scroll-reveal-item">
                 <img src="./img/koro.png" alt="Miniatura de Little Onion Adventures" class="game-image">
                 <div class="game-content">
                     <a href="https://elviajedekoro.itch.io/el-viaje-de-koro" target="_blank">
                         El viaje de Koro
                     </a>
-                    <p>El viaje de Koro.</p>
-                    <a href="https://elviajedekoro.itch.io/el-viaje-de-koro" target="_blank" class="game-link-button">
+   		    <div class="game-details-hidden">
+                        <p><span data-translate="platform">Plataforma</span>: PC (itch.io)</p>
+                        <p><span data-translate="genre">Género</span>: Acción, Plataformas</p>
+                        <p><span data-translate="developer">Desarrollador</span>: Grupo 9</p>
+                    </div>
+                    <button class="toggle-details-button">Ver más detalles</button>
+                    <p data-translate="game9Desc">El viaje de Koro.</p>
+                    <a href="https://elviajedekoro.itch.io/el-viaje-de-koro" target="_blank" class="game-link-button" data-translate="playButton">
                         ¡Jugar Ahora!
                     </a>
                 </div>
             </li>
-            <li class="game-item">
+            <li class="game-item scroll-reveal-item">
                 <img src="./img/digital.png" alt="Miniatura de Little Onion Adventures" class="game-image">
                 <div class="game-content">
                     <a href="https://sebateunmate.itch.io/escape-digital" target="_blank">
                         Escape Digital
                     </a>
-                    <p>Escape Digital.</p>
-                    <a href="https://sebateunmate.itch.io/escape-digital" target="_blank" class="game-link-button">
+		    <div class="game-details-hidden">
+                        <p><span data-translate="platform">Plataforma</span>: PC (itch.io)</p>
+                        <p><span data-translate="genre">Género</span>: Acción, Plataformas</p>
+                        <p><span data-translate="developer">Desarrollador</span>: Grupo 10</p>
+                    </div>
+                    <button class="toggle-details-button">Ver más detalles</button>
+                    <p data-translate="game10Desc">Escape Digital.</p>
+                    <a href="https://sebateunmate.itch.io/escape-digital" target="_blank" class="game-link-button" data-translate="playButton">
                         ¡Jugar Ahora!
                     </a>
                 </div>
             </li>
-            <li class="game-item">
+            <li class="game-item scroll-reveal-item">
                 <img src="./img/elion.png" alt="Miniatura de Little Onion Adventures" class="game-image">
                 <div class="game-content">
                     <a href="https://emiliavandelinde.itch.io/el-rescate-de-los-hermanos" target="_blank">
                         El rescate de los Hermanos
                     </a>
-                    <p>El rescate de los Hermanos.</p>
-                    <a href="https://emiliavandelinde.itch.io/el-rescate-de-los-hermanos" target="_blank" class="game-link-button">
+		    <div class="game-details-hidden">
+                        <p><span data-translate="platform">Plataforma</span>: PC (itch.io)</p>
+                        <p><span data-translate="genre">Género</span>: Acción, Plataformas</p>
+                        <p><span data-translate="developer">Desarrollador</span>: Grupo 11</p>
+                    </div>
+                    <button class="toggle-details-button">Ver más detalles</button>
+                    <p data-translate="game11Desc">El rescate de los Hermanos.</p>
+                    <a href="https://emiliavandelinde.itch.io/el-rescate-de-los-hermanos" target="_blank" class="game-link-button" data-translate="playButton">
                         ¡Jugar Ahora!
                     </a>
                 </div>
             </li>
-              <li class="game-item">
+              <li class="game-item scroll-reveal-item">
                 <img src="./img/ruins.jpg" alt="Miniatura de Little Onion Adventures" class="game-image">
                 <div class="game-content">
                     <a href="https://lucasherrero.itch.io/neon-ruins" target="_blank">
                         Neon Ruins
                     </a>
-                    <p>Neon Ruins.</p>
-                    <a href="https://lucasherrero.itch.io/neon-ruins" target="_blank" class="game-link-button">
+		    <div class="game-details-hidden">
+                        <p><span data-translate="platform">Plataforma</span>: PC (itch.io)</p>
+                        <p><span data-translate="genre">Género</span>: Acción, Plataformas</p>
+                        <p><span data-translate="developer">Desarrollador</span>: Grupo 7</p>
+                    </div>
+                    <button class="toggle-details-button">Ver más detalles</button>
+                    <p data-translate="game7Desc">Neon Ruins.</p>
+                    <a href="https://lucasherrero.itch.io/neon-ruins" target="_blank" class="game-link-button" data-translate="playButton">
                         ¡Jugar Ahora!
                     </a>
                 </div>
             </li>
             </li>
-              <li class="game-item">
+              <li class="game-item scroll-reveal-item">
                 <img src="./img/boba.jpg" alt="Miniatura de Little Onion Adventures" class="game-image">
                 <div class="game-content">
                     <a href="https://gamemaria.itch.io/boba-tp" target="_blank">
                         Boba Fett
                     </a>
-                    <p>Boba Fett.</p>
-                    <a href="https://gamemaria.itch.io/boba-tp" target="_blank" class="game-link-button">
+  		    <div class="game-details-hidden">
+                        <p><span data-translate="platform">Plataforma</span>: PC (itch.io)</p>
+                        <p><span data-translate="genre">Género</span>: Acción, Plataformas</p>
+                        <p><span data-translate="developer">Desarrollador</span>: Grupo 12</p>
+                    </div>
+                    <button class="toggle-details-button">Ver más detalles</button>
+                    <p data-translate="game12Desc">Boba Fett.</p>
+                    <a href="https://gamemaria.itch.io/boba-tp" target="_blank" class="game-link-button" data-translate="playButton">
                         ¡Jugar Ahora!
                     </a>
                 </div>
             </li>
             </li>
-              <li class="game-item">
+              <li class="game-item scroll-reveal-item">
                 <img src="./img/cata.png" alt="Miniatura de Little Onion Adventures" class="game-image">
                 <div class="game-content">
                     <a href="https://nespi.itch.io/proyecto-tudw" target="_blank">
                         Arqueologa Cata
                     </a>
-                    <p>Arqueologa Cata.</p>
-                    <a href="https://nespi.itch.io/proyecto-tudw" target="_blank" class="game-link-button">
+	     	    <div class="game-details-hidden">
+                        <p><span data-translate="platform">Plataforma</span>: PC (itch.io)</p>
+                        <p><span data-translate="genre">Género</span>: Acción, Plataformas</p>
+                        <p><span data-translate="developer">Desarrollador</span>: Grupo 13</p>
+                    </div>
+                    <button class="toggle-details-button">Ver más detalles</button>
+                    <p data-translate="game13Desc">Arqueologa Cata.</p>
+                    <a href="https://nespi.itch.io/proyecto-tudw" target="_blank" class="game-link-button" data-translate="playButton">
                         ¡Jugar Ahora!
                     </a>
                 </div>
             </li>
             </li>
-              <li class="game-item">
+              <li class="game-item scroll-reveal-item">
                 <img src="./img/zombie.png" alt="Miniatura de Little Onion Adventures" class="game-image">
                 <div class="game-content">
                     <a href="https://joser0302.itch.io/humanz" target="_blank">
                         HumanZ
                     </a>
-                    <p>HumanZ.</p>
-                    <a href="https://joser0302.itch.io/humanz" target="_blank" class="game-link-button">
+		    <div class="game-details-hidden">
+                        <p><span data-translate="platform">Plataforma</span>: PC (itch.io)</p>
+                        <p><span data-translate="genre">Género</span>: Acción, Plataformas</p>
+                        <p><span data-translate="developer">Desarrollador</span>: Grupo 14</p>
+                    </div>
+                    <button class="toggle-details-button">Ver más detalles</button>
+                    <p data-translate="game14Desc">HumanZ.</p>
+                    <a href="https://joser0302.itch.io/humanz" target="_blank" class="game-link-button" data-translate="playButton">
                         ¡Jugar Ahora!
                     </a>
                 </div>
             </li>
               </li>
-              <li class="game-item">
+              <li class="game-item scroll-reveal-item">
                 <img src="./img/gato.png" alt="Miniatura de Little Onion Adventures" class="game-image">
                 <div class="game-content">
                     <a href="https://retalazycodes.itch.io/space-shooter-test" target="_blank">
                         gato Salem y Do-go
                     </a>
-                    <p>gato Salem y Do-go.</p>
-                    <a href="https://retalazycodes.itch.io/space-shooter-test" target="_blank" class="game-link-button">
+		    <div class="game-details-hidden">
+                        <p><span data-translate="platform">Plataforma</span>: PC (itch.io)</p>
+                        <p><span data-translate="genre">Género</span>: Acción, Plataformas</p>
+                        <p><span data-translate="developer">Desarrollador</span>: Grupo 15</p>
+                    </div>
+                    <button class="toggle-details-button">Ver más detalles</button>
+                    <p data-translate="game15Desc">gato Salem y Do-go.</p>
+                    <a href="https://retalazycodes.itch.io/space-shooter-test" target="_blank" class="game-link-button" data-translate="playButton">
                         ¡Jugar Ahora!
                     </a>
                 </div>
             </li>
              </li>
               </li>
-              <li class="game-item">
+              <li class="game-item scroll-reveal-item">
                 <img src="./img/gauchito.png" alt="Miniatura de Little Onion Adventures" class="game-image">
                 <div class="game-content">
                     <a href="https://mateaventuras.itch.io/mateaventuras" target="_blank">
                         El gauchito Yerbatero
                     </a>
-                    <p>El gauchito Yerbatero.</p>
-                    <a href="https://mateaventuras.itch.io/mateaventuras" target="_blank" class="game-link-button">
+		    <div class="game-details-hidden">
+                        <p><span data-translate="platform">Plataforma</span>: PC (itch.io)</p>
+                        <p><span data-translate="genre">Género</span>: Acción, Plataformas</p>
+                        <p><span data-translate="developer">Desarrollador</span>: Grupo 16</p>
+                    </div>
+                    <button class="toggle-details-button">Ver más detalles</button>
+                    <p data-translate="game16Desc">El gauchito Yerbatero.</p>
+                    <a href="https://mateaventuras.itch.io/mateaventuras" target="_blank" class="game-link-button" data-translate="playButton">
                         ¡Jugar Ahora!
                     </a>
                 </div>
             </li>
-            <li class="game-item">
+            <li class="game-item scroll-reveal-item">
                 <img src="./img/gp.png" alt="Miniatura de Little Onion Adventures" class="game-image">
                 <div class="game-content">
                     <a href="https://lara-alegre.itch.io/gp-hunting" target="_blank">
                         GP Hunting
                     </a>
-                    <p>GP Hunting.</p>
-                    <a href="https://lara-alegre.itch.io/gp-hunting" target="_blank" class="game-link-button">
+		    <div class="game-details-hidden">
+                        <p><span data-translate="platform">Plataforma</span>: PC (itch.io)</p>
+                        <p><span data-translate="genre">Género</span>: Acción, Plataformas</p>
+                        <p><span data-translate="developer">Desarrollador</span>: Grupo 19</p>
+                    </div>
+                    <button class="toggle-details-button">Ver más detalles</button>
+                    <p data-translate="game19Desc">GP Hunting.</p>
+                    <a href="https://lara-alegre.itch.io/gp-hunting" target="_blank" class="game-link-button" data-translate="playButton">
                         ¡Jugar Ahora!
                     </a>
                 </div>
             </li>
-            <li class="game-item">
+            <li class="game-item scroll-reveal-item">
                 <img src="./img/tao.jpg" alt="Miniatura de Little Onion Adventures" class="game-image">
                 <div class="game-content">
                     <a href="https://belayala.itch.io/el-ultimo-heredero" target="_blank">
                         Tao Maori
                     </a>
-                    <p>Tao Maori.</p>
-                    <a href="https://belayala.itch.io/el-ultimo-heredero" target="_blank" class="game-link-button">
+		    <div class="game-details-hidden">
+                        <p><span data-translate="platform">Plataforma</span>: PC (itch.io)</p>
+                        <p><span data-translate="genre">Género</span>: Acción, Plataformas</p>
+                        <p><span data-translate="developer">Desarrollador</span>: Grupo 17</p>
+                    </div>
+                    <button class="toggle-details-button">Ver más detalles</button>
+                    <p data-translate="game17Desc">Tao Maori.</p>
+                    <a href="https://belayala.itch.io/el-ultimo-heredero" target="_blank" class="game-link-button" data-translate="playButton">
                         ¡Jugar Ahora!
                     </a>
                 </div>
