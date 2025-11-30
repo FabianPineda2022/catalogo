@@ -12,7 +12,7 @@ const translations = {
     es: {
         pageTitle: "🎮 Catálogo de Videojuegos 🕹️",
         loadingMessage: "Cargando el Catálogo... ¡Prepárate para jugar!",
-        headerTitle: "🚀 Explorador de Juegos Indie 👾",
+        headerTitle: "🚀 Asignatura de Multimedia y Juegos en la Web - 2do Cuatrimestre 2025 👾",
         searchPlaceholder: "Buscar juego por título...",
         catalogTitle: "Catálogo de Lanzamientos",
         platform: "Plataforma",
@@ -211,4 +211,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     console.log("Soporte multi-idioma (i18n) activado.");
+
 });
