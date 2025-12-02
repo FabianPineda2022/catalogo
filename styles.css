@@ -10,7 +10,7 @@ body {
 
     /* --- NUEVO FONDO --- */
     /* Asegúrate de que la ruta coincida con donde guardaste la imagen */
-    background: url('./img/fondo-azul.png') no-repeat center center fixed;
+    background: url('./img/fondo_azul.png') no-repeat center center fixed;
     background-size: cover; /* Ajusta la imagen para cubrir todo el fondo */
     
     /* Color de texto base (ajústalo a #333 si el fondo es muy claro) */
@@ -494,6 +494,7 @@ h1 {
         min-height: auto;
     }
 }
+
 
 
 
