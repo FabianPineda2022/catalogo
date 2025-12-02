@@ -187,13 +187,15 @@ document.addEventListener('DOMContentLoaded', () => {
     scrollRevealItems.forEach(item => { observer.observe(item); });
 
 // ==========================================================
-// 5. SISTEMA DE VISTA MODAL (Reemplaza a los detalles desplegables)
+// 5. SISTEMA DE VISTA MODAL (Versión: Clic en Imagen)
 // ==========================================================
 
 function initModalSystem() {
     const modal = document.getElementById('game-modal');
     const closeBtn = document.querySelector('.close-modal-btn');
-    const toggleButtons = document.querySelectorAll('.toggle-details-button'); // Reutilizamos la clase existente
+    
+    // CAMBIO CLAVE: Ahora seleccionamos todas las IMÁGENES
+    const gameImages = document.querySelectorAll('.game-image'); 
     
     // Elementos internos del modal
     const mImg = document.getElementById('modal-img');
@@ -204,33 +206,30 @@ function initModalSystem() {
 
     // Función para ABRIR el modal
     const openModal = (gameItem) => {
-        // 1. Extraer datos de la tarjeta clickeada
+        // 1. Extraer datos (igual que antes)
         const img = gameItem.querySelector('.game-image').src;
-        const title = gameItem.querySelector('.game-content a').innerText;
-        const playLink = gameItem.querySelector('.game-content a').href;
+        // Nota: Asegúrate de buscar el enlace del título correctamente
+        const titleLink = gameItem.querySelector('.game-content a');
+        const title = titleLink ? titleLink.innerText : "Juego";
+        const playLink = titleLink ? titleLink.href : "#";
         
-        // Clonamos los detalles ocultos para no perder los eventos originales, 
-        // pero .innerHTML es suficiente aquí ya que es solo texto.
-        const detailsHtml = gameItem.querySelector('.game-details-hidden').innerHTML;
+        const detailsContainer = gameItem.querySelector('.game-details-hidden');
+        const detailsHtml = detailsContainer ? detailsContainer.innerHTML : "";
         
-        // Buscamos el párrafo de descripción. 
-        // NOTA: Asumimos que es el párrafo visible justo antes del botón de jugar.
-        // Una forma más segura es buscar por el atributo data-translate si existe, 
-        // o tomar el texto directo.
-        let descText = "";
-        const descP = gameItem.querySelector('.game-content > p'); // El párrafo directo
-        if(descP) descText = descP.textContent;
+        // Buscamos la descripción. Asumimos que es el párrafo visible con data-translate
+        // o simplemente el párrafo directo en game-content.
+        const descP = gameItem.querySelector('.game-content > p');
+        const descText = descP ? descP.textContent : "Sin descripción disponible.";
 
         // 2. Llenar el modal
         mImg.src = img;
         mTitle.innerText = title;
-        mMeta.innerHTML = detailsHtml; // Inyectamos el HTML de plataforma/género
+        mMeta.innerHTML = detailsHtml;
         mDesc.innerText = descText;
         mPlay.href = playLink;
 
         // 3. Mostrar modal
         modal.classList.remove('hidden');
-        // Pequeño delay para permitir que la transición CSS ocurra
         setTimeout(() => {
             modal.classList.add('active');
         }, 10);
@@ -241,35 +240,32 @@ function initModalSystem() {
         modal.classList.remove('active');
         setTimeout(() => {
             modal.classList.add('hidden');
-        }, 300); // Esperar a que termine la transición de 0.3s
+        }, 300);
     };
 
-    // Asignar eventos a los botones "Ver más detalles"
-    toggleButtons.forEach(btn => {
-        // Clonamos el botón para eliminar los eventos viejos (el acordeón)
-        const newBtn = btn.cloneNode(true);
-        btn.parentNode.replaceChild(newBtn, btn);
-
-        newBtn.addEventListener('click', (e) => {
-            e.preventDefault(); // Prevenir saltos
-            const gameItem = newBtn.closest('.game-item');
-            openModal(gameItem);
+    // Asignar evento CLICK a las IMÁGENES
+    gameImages.forEach(img => {
+        img.addEventListener('click', (e) => {
+            e.preventDefault(); 
+            // Buscamos el contenedor padre (.game-item) para sacar los datos
+            const gameItem = img.closest('.game-item');
+            if (gameItem) {
+                openModal(gameItem);
+            }
         });
     });
 
-    // Eventos de cierre
-    closeBtn.addEventListener('click', closeModal);
+    // Eventos de cierre (igual que antes)
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
     
-    // Cerrar al hacer clic fuera del contenido (en el fondo oscuro)
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            closeModal();
-        }
-    });
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+    }
 
-    // Cerrar con la tecla ESC
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.classList.contains('active')) {
+        if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
             closeModal();
         }
     });
@@ -371,4 +367,5 @@ function initShareButtons() {
 initShareButtons();
 initFavorites(); // Llamar a esta función al final de tu carga
 });
+
 
