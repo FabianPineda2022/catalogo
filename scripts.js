@@ -211,7 +211,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     console.log("Soporte multi-idioma (i18n) activado.");
+// ==============================================================
 // Sistema de Favoritos
+// ==============================================================
 function initFavorites() {
     const favButtons = document.querySelectorAll('.fav-btn');
     
@@ -302,5 +304,3 @@ function initShareButtons() {
 initShareButtons();
 initFavorites(); // Llamar a esta función al final de tu carga
 });
-
-
