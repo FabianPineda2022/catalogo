@@ -128,7 +128,49 @@ h1 {
 .game-content {
     position: relative; /* Necesario para posicionar el corazón */
 }
+.share-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: transparent;
+    border: none;
+    color: #95a5a6; /* Gris sutil */
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
 
+.share-btn:hover {
+    color: #3498db; /* Azul al pasar el mouse */
+    background-color: rgba(52, 152, 219, 0.1);
+    transform: scale(1.1);
+}
+
+/* --- Estilos para la Notificación (Toast) --- */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-size: 0.9em;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s, bottom 0.3s;
+}
+
+.toast.show {
+    opacity: 1;
+    visibility: visible;
+    bottom: 40px; /* Pequeño salto hacia arriba al aparecer */
+}
 .fav-btn {
     position: absolute;
     top: -45px; /* Ajustar para que quede sobre la imagen o esquina */
@@ -303,5 +345,6 @@ h1 {
     }
 
 }
+
 
 
