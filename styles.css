@@ -345,6 +345,128 @@ h1 {
     }
 
 }
+/* --- Estilos de la Ventana Modal --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85); /* Fondo oscuro para enfocar */
+    backdrop-filter: blur(5px); /* Efecto borroso en el fondo */
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: linear-gradient(145deg, #2c3e50, #1a252f);
+    width: 90%;
+    max-width: 800px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.1);
+    transform: scale(0.7);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efecto rebote */
+}
+
+.modal-overlay.active .modal-content {
+    transform: scale(1);
+}
+
+.close-modal-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2rem;
+    color: #fff;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+    line-height: 1;
+}
+
+.close-modal-btn:hover {
+    color: #e74c3c;
+}
+
+.modal-body {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.modal-image-container {
+    flex: 1 1 300px; /* Ocupa al menos 300px o la mitad */
+    background-color: #000;
+}
+
+.modal-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    min-height: 300px;
+}
+
+.modal-info {
+    flex: 1 1 300px;
+    padding: 30px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+#modal-title {
+    font-size: 2em;
+    margin-bottom: 15px;
+    color: #3498db;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.modal-meta-data p {
+    margin: 5px 0;
+    font-size: 0.95em;
+    color: #bdc3c7;
+}
+
+.modal-meta-data span {
+    font-weight: bold;
+    color: #ecf0f1;
+}
+
+#modal-desc {
+    margin: 20px 0;
+    line-height: 1.6;
+    color: #ecf0f1;
+}
+
+.modal-buttons {
+    margin-top: auto; /* Empuja el botón hacia abajo */
+}
+
+/* Ajuste móvil */
+@media (max-width: 700px) {
+    .modal-image-container img {
+        max-height: 200px;
+    }
+    .modal-content {
+        max-height: 90vh; /* Evita que sea más alto que la pantalla */
+        overflow-y: auto; /* Scroll interno si es necesario */
+    }
+}
+
 
 
 
