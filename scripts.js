@@ -185,20 +185,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.1 });
 
     scrollRevealItems.forEach(item => { observer.observe(item); });
-
 // ==========================================================
-// 5. SISTEMA DE VISTA MODAL (Versión: Clic en Imagen)
+// 5. SISTEMA DE VISTA MODAL (Versión: YouTube Video)
 // ==========================================================
 
 function initModalSystem() {
     const modal = document.getElementById('game-modal');
     const closeBtn = document.querySelector('.close-modal-btn');
-    
-    // CAMBIO CLAVE: Ahora seleccionamos todas las IMÁGENES
     const gameImages = document.querySelectorAll('.game-image'); 
     
     // Elementos internos del modal
-    const mImg = document.getElementById('modal-img');
+    const mVideo = document.getElementById('modal-video'); // Ahora referenciamos al iframe
     const mTitle = document.getElementById('modal-title');
     const mMeta = document.getElementById('modal-meta');
     const mDesc = document.getElementById('modal-desc');
@@ -206,9 +203,10 @@ function initModalSystem() {
 
     // Función para ABRIR el modal
     const openModal = (gameItem) => {
-        // 1. Extraer datos (igual que antes)
-        const img = gameItem.querySelector('.game-image').src;
-        // Nota: Asegúrate de buscar el enlace del título correctamente
+        // 1. Extraer datos
+        // Obtenemos el ID del video desde el atributo que agregamos al LI
+        const videoId = gameItem.getAttribute('data-video'); 
+        
         const titleLink = gameItem.querySelector('.game-content a');
         const title = titleLink ? titleLink.innerText : "Juego";
         const playLink = titleLink ? titleLink.href : "#";
@@ -216,13 +214,19 @@ function initModalSystem() {
         const detailsContainer = gameItem.querySelector('.game-details-hidden');
         const detailsHtml = detailsContainer ? detailsContainer.innerHTML : "";
         
-        // Buscamos la descripción. Asumimos que es el párrafo visible con data-translate
-        // o simplemente el párrafo directo en game-content.
         const descP = gameItem.querySelector('.game-content > p');
-        const descText = descP ? descP.textContent : "Sin descripción disponible.";
+        const descText = descP ? descP.textContent : "Sin descripción.";
 
         // 2. Llenar el modal
-        mImg.src = img;
+        // Construimos la URL de embed de YouTube. 
+        // 'autoplay=1' hace que arranque solo. 'mute=0' asegura que tenga sonido (a veces el navegador bloquea autoplay con sonido).
+        if (videoId) {
+            mVideo.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+        } else {
+            // Video por defecto o imagen de error si no pusiste ID
+            mVideo.src = ""; 
+        }
+
         mTitle.innerText = title;
         mMeta.innerHTML = detailsHtml;
         mDesc.innerText = descText;
@@ -230,9 +234,7 @@ function initModalSystem() {
 
         // 3. Mostrar modal
         modal.classList.remove('hidden');
-        setTimeout(() => {
-            modal.classList.add('active');
-        }, 10);
+        setTimeout(() => modal.classList.add('active'), 10);
     };
 
     // Función para CERRAR el modal
@@ -240,6 +242,8 @@ function initModalSystem() {
         modal.classList.remove('active');
         setTimeout(() => {
             modal.classList.add('hidden');
+            // IMPORTANTE: Detener el video al cerrar
+            mVideo.src = ""; 
         }, 300);
     };
 
@@ -247,32 +251,21 @@ function initModalSystem() {
     gameImages.forEach(img => {
         img.addEventListener('click', (e) => {
             e.preventDefault(); 
-            // Buscamos el contenedor padre (.game-item) para sacar los datos
             const gameItem = img.closest('.game-item');
-            if (gameItem) {
-                openModal(gameItem);
-            }
+            if (gameItem) openModal(gameItem);
         });
     });
 
-    // Eventos de cierre (igual que antes)
+    // Eventos de cierre
     if (closeBtn) closeBtn.addEventListener('click', closeModal);
-    
-    if (modal) {
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal();
-        });
-    }
-
+    if (modal) modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
-            closeModal();
-        }
+        if (e.key === 'Escape' && modal && modal.classList.contains('active')) closeModal();
     });
 }
 
-// Inicializar el sistema al cargar
 initModalSystem();
+
 
 // ==============================================================
 // Sistema de Favoritos
@@ -367,5 +360,6 @@ function initShareButtons() {
 initShareButtons();
 initFavorites(); // Llamar a esta función al final de tu carga
 });
+
 
 
