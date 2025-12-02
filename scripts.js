@@ -244,7 +244,63 @@ function initFavorites() {
         });
     });
 }
+// ==========================================================
+// LÓGICA DE COMPARTIR (SOCIAL SHARE)
+// ==========================================================
 
+function initShareButtons() {
+    const shareButtons = document.querySelectorAll('.share-btn');
+    const toast = document.getElementById('toast-notification');
+
+    // Función para mostrar la notificación
+    const showToast = (message) => {
+        toast.textContent = message; // Actualiza texto (útil si agregas idiomas luego)
+        toast.classList.add('show');
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 3000); // Desaparece a los 3 segundos
+    };
+
+    shareButtons.forEach(btn => {
+        btn.addEventListener('click', async (e) => {
+            // Evita que el click dispare otros eventos de la tarjeta
+            e.stopPropagation();
+
+            // Buscar el enlace y título dentro de la tarjeta padre
+            const card = btn.closest('.game-content');
+            const linkElement = card.querySelector('a'); // El primer <a> es el título
+            
+            const shareData = {
+                title: 'Juegos Indie 2025',
+                text: `¡Mira este juego increíble: ${linkElement.innerText}!`,
+                url: linkElement.href
+            };
+
+            // 1. Intenta usar la API nativa (Móviles: WhatsApp, Twitter, etc.)
+            if (navigator.share) {
+                try {
+                    await navigator.share(shareData);
+                    console.log('Juego compartido con éxito');
+                } catch (err) {
+                    console.log('Usuario canceló compartir o error:', err);
+                }
+            } 
+            // 2. Si no es compatible (PC Desktop), copia al portapapeles
+            else {
+                try {
+                    await navigator.clipboard.writeText(shareData.url);
+                    showToast("¡Enlace copiado al portapapeles! 📋");
+                } catch (err) {
+                    showToast("Error al copiar enlace ❌");
+                }
+            }
+        });
+    });
+}
+
+// ¡No olvides llamar a la función!
+initShareButtons();
 initFavorites(); // Llamar a esta función al final de tu carga
 });
+
 
