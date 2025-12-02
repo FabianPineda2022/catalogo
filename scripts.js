@@ -186,31 +186,98 @@ document.addEventListener('DOMContentLoaded', () => {
 
     scrollRevealItems.forEach(item => { observer.observe(item); });
 
-    // ------------------------------------------------------------------
-    // 5. Detalles Desplegables (Modificado ligeramente para incluir la traducción)
-    // ------------------------------------------------------------------
-    const toggleButtons = document.querySelectorAll('.toggle-details-button');
+// ==========================================================
+// 5. SISTEMA DE VISTA MODAL (Reemplaza a los detalles desplegables)
+// ==========================================================
 
-    toggleButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const detailsContainer = button.previousElementSibling;
-            
-            if (detailsContainer && detailsContainer.classList.contains('game-details-hidden')) {
-                detailsContainer.classList.toggle('visible');
-                
-                // Actualiza el texto del botón usando la traducción
-                const currentLang = document.documentElement.lang;
-                const translation = translations[currentLang];
-                
-                if (detailsContainer.classList.contains('visible')) {
-                    button.textContent = translation['detailsButtonHide'];
-                } else {
-                    button.textContent = translation['detailsButtonShow'];
-                }
-            }
+function initModalSystem() {
+    const modal = document.getElementById('game-modal');
+    const closeBtn = document.querySelector('.close-modal-btn');
+    const toggleButtons = document.querySelectorAll('.toggle-details-button'); // Reutilizamos la clase existente
+    
+    // Elementos internos del modal
+    const mImg = document.getElementById('modal-img');
+    const mTitle = document.getElementById('modal-title');
+    const mMeta = document.getElementById('modal-meta');
+    const mDesc = document.getElementById('modal-desc');
+    const mPlay = document.getElementById('modal-play-link');
+
+    // Función para ABRIR el modal
+    const openModal = (gameItem) => {
+        // 1. Extraer datos de la tarjeta clickeada
+        const img = gameItem.querySelector('.game-image').src;
+        const title = gameItem.querySelector('.game-content a').innerText;
+        const playLink = gameItem.querySelector('.game-content a').href;
+        
+        // Clonamos los detalles ocultos para no perder los eventos originales, 
+        // pero .innerHTML es suficiente aquí ya que es solo texto.
+        const detailsHtml = gameItem.querySelector('.game-details-hidden').innerHTML;
+        
+        // Buscamos el párrafo de descripción. 
+        // NOTA: Asumimos que es el párrafo visible justo antes del botón de jugar.
+        // Una forma más segura es buscar por el atributo data-translate si existe, 
+        // o tomar el texto directo.
+        let descText = "";
+        const descP = gameItem.querySelector('.game-content > p'); // El párrafo directo
+        if(descP) descText = descP.textContent;
+
+        // 2. Llenar el modal
+        mImg.src = img;
+        mTitle.innerText = title;
+        mMeta.innerHTML = detailsHtml; // Inyectamos el HTML de plataforma/género
+        mDesc.innerText = descText;
+        mPlay.href = playLink;
+
+        // 3. Mostrar modal
+        modal.classList.remove('hidden');
+        // Pequeño delay para permitir que la transición CSS ocurra
+        setTimeout(() => {
+            modal.classList.add('active');
+        }, 10);
+    };
+
+    // Función para CERRAR el modal
+    const closeModal = () => {
+        modal.classList.remove('active');
+        setTimeout(() => {
+            modal.classList.add('hidden');
+        }, 300); // Esperar a que termine la transición de 0.3s
+    };
+
+    // Asignar eventos a los botones "Ver más detalles"
+    toggleButtons.forEach(btn => {
+        // Clonamos el botón para eliminar los eventos viejos (el acordeón)
+        const newBtn = btn.cloneNode(true);
+        btn.parentNode.replaceChild(newBtn, btn);
+
+        newBtn.addEventListener('click', (e) => {
+            e.preventDefault(); // Prevenir saltos
+            const gameItem = newBtn.closest('.game-item');
+            openModal(gameItem);
         });
     });
-    console.log("Soporte multi-idioma (i18n) activado.");
+
+    // Eventos de cierre
+    closeBtn.addEventListener('click', closeModal);
+    
+    // Cerrar al hacer clic fuera del contenido (en el fondo oscuro)
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+
+    // Cerrar con la tecla ESC
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+}
+
+// Inicializar el sistema al cargar
+initModalSystem();
+
 // ==============================================================
 // Sistema de Favoritos
 // ==============================================================
@@ -304,3 +371,4 @@ function initShareButtons() {
 initShareButtons();
 initFavorites(); // Llamar a esta función al final de tu carga
 });
+
