@@ -118,11 +118,15 @@ h1 {
     border: 3px solid #3498db;
     overflow: hidden;
     transition: transform 0.3s ease-in-out;
+
+    cursor: pointer; /* IMPORTANTE: Muestra la manito al pasar el mouse */
 }
 
 .game-image:hover {
     transform: scale(1.05); /* Zoom más sutil en el grid */
-    cursor: pointer;
+    /*cursor: pointer;*/
+    filter: brightness(1.2); /* Ilumina un poco la imagen */
+    box-shadow: 0 0 15px rgba(52, 152, 219, 0.7);
 }
 
 .game-content {
@@ -466,6 +470,7 @@ h1 {
         overflow-y: auto; /* Scroll interno si es necesario */
     }
 }
+
 
 
 
