@@ -211,5 +211,40 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     console.log("Soporte multi-idioma (i18n) activado.");
+// Sistema de Favoritos
+function initFavorites() {
+    const favButtons = document.querySelectorAll('.fav-btn');
+    
+    // Cargar favoritos guardados
+    let favorites = JSON.parse(localStorage.getItem('myGameFavorites')) || [];
 
+    favButtons.forEach(btn => {
+        const gameTitle = btn.nextElementSibling.innerText.trim(); // Obtiene el nombre del juego
+        
+        // Marcar si ya estaba guardado
+        if (favorites.includes(gameTitle)) {
+            btn.textContent = '❤️';
+            btn.classList.add('is-fav');
+        }
+
+        btn.addEventListener('click', () => {
+            if (btn.classList.contains('is-fav')) {
+                // Quitar de favoritos
+                btn.textContent = '🤍';
+                btn.classList.remove('is-fav');
+                favorites = favorites.filter(t => t !== gameTitle);
+            } else {
+                // Agregar a favoritos
+                btn.textContent = '❤️';
+                btn.classList.add('is-fav');
+                favorites.push(gameTitle);
+            }
+            // Guardar en memoria local
+            localStorage.setItem('myGameFavorites', JSON.stringify(favorites));
+        });
+    });
+}
+
+initFavorites(); // Llamar a esta función al final de tu carga
 });
+
