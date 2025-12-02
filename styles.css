@@ -5,8 +5,12 @@ body {
     margin: 0;
     padding: 0;
     background-color: #e9eff5;
-    color: #333;
+    /*color: #333;*/
     transition: margin-top 0.5s ease;
+    /* Asumiendo que guardaste la imagen azul como 'background-blue.png' */
+    background: url('./img/background-blue.png') no-repeat center center fixed; 
+    background-size: cover;
+    color: #fff; /* Cambiamos texto base a blanco para contraste */
 }
 
 /* --- Estilos de Precarga --- */
@@ -96,12 +100,19 @@ h1 {
     /* Deshabilitamos Flexbox y el margen inferior para el Grid */
     display: block; 
     margin-bottom: 0; 
+
+    /* Fondo semitransparente oscuro para resaltar sobre el fondo azul neón */
+    background: rgba(20, 30, 48, 0.85); 
+    backdrop-filter: blur(10px); /* Efecto borroso detrás de la tarjeta */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Borde sutil */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    color: #e0e0e0;
     
     /* El resto de estilos de tarjeta */
-    background-color: white;
+    /* background-color: white; */
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); */
     transition: transform 0.3s ease;
     height: auto; /* Permite que la altura se ajuste al contenido */
 }
@@ -126,6 +137,12 @@ h1 {
 
 .game-content {
     position: relative; /* Necesario para posicionar el corazón */
+    color: #4facfe; /* Un celeste neón que combine */
+    text-shadow: 0 0 5px rgba(79, 172, 254, 0.5);
+}
+.catalogo h2 {
+    color: #fff;
+    text-shadow: 2px 2px 4px #000;
 }
 .fav-btn {
     position: absolute;
@@ -301,3 +318,4 @@ h1 {
     }
 
 }
+
