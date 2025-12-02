@@ -4,8 +4,17 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #e9eff5;
+    /*background-color: #e9eff5;
     color: #333;
+    transition: margin-top 0.5s ease;*/
+
+    /* --- NUEVO FONDO --- */
+    /* Asegúrate de que la ruta coincida con donde guardaste la imagen */
+    background: url('./img/fondo-azul.png') no-repeat center center fixed;
+    background-size: cover; /* Ajusta la imagen para cubrir todo el fondo */
+    
+    /* Color de texto base (ajústalo a #333 si el fondo es muy claro) */
+    color: #fff; 
     transition: margin-top 0.5s ease;
 }
 
@@ -485,6 +494,7 @@ h1 {
         min-height: auto;
     }
 }
+
 
 
 
