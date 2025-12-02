@@ -106,6 +106,11 @@ h1 {
     display: block; 
     margin-bottom: 0; 
 
+    background: rgba(255, 255, 255, 0.9); /* Fondo blanco semitransparente */
+    backdrop-filter: blur(5px); /* Desenfoca levemente los dibujos de atrás */
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: #333; /* Texto oscuro para contraste con la tarjeta blanca */
+
      
     /* El resto de estilos de tarjeta */
     background-color: white; 
@@ -494,6 +499,7 @@ h1 {
         min-height: auto;
     }
 }
+
 
 
 
