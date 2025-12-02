@@ -30,7 +30,7 @@
         <h2 data-translate="catalogTitle">Catálogo 2025</h2>
 	        
         <ul>
-            <li class="game-item scroll-reveal-item">
+            <li class="game-item scroll-reveal-item" data-video="">
 		    <img src="./img/caballero.png" alt="Miniatura de Caballero" class="game-image">
 			<button class="fav-btn" aria-label="Agregar a favoritos">🤍</button>	
             	    <div class="game-content">
@@ -537,7 +537,15 @@
         
         <div class="modal-body">
             <div class="modal-image-container">
-                <img id="modal-img" src="" alt="Juego">
+                <iframe 
+        		id="modal-video" 
+        		class="video-frame"
+        		src="" 
+        		title="YouTube video player" 
+        		frameborder="0" 
+        		allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        		allowfullscreen>
+    </iframe>
             </div>
             
             <div class="modal-info">
@@ -559,6 +567,7 @@
 </body>
 
 </html>
+
 
 
 
